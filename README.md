@@ -1,6 +1,6 @@
 PROCESAMIENTO DE CHEQUES
 
-- Inicialice el programa colocando en la terminal el comando: 
+- Inicialice el programa colocando en la terminal el comando (para windows): 
 ```
     py listado_cheques.py
 ```
