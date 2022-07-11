@@ -48,9 +48,10 @@ def buscar_por_dni(dni, tipo):
     cant_cheches_encontrados = 0
     cheques = readFile(url_file)
     for cheque in cheques:
-        if cheque["DNI"] == dni and cheque['Tipo'].lower() == tipo:
-            cant_cheches_encontrados += 1
-            busqueda.append(cheque)
+        if cheque["DNI"] == dni:
+            if cheque['Tipo'].lower() == tipo or tipo == "":
+                cant_cheches_encontrados += 1
+                busqueda.append(cheque)
 
     numeros_de_cheque = []
     for cheque in busqueda:
@@ -96,13 +97,12 @@ if __name__ == '__main__':
         op = int(input('\nIngrese una opcion: '))
 
         if op == 1:
-            url_file = input("Ingrese el nombre del archivo que contiene los cheques (sin ectencion): ")+".csv".lower()
+            url_file = input("Ingrese el nombre del archivo que contiene los cheques (sin extencion): ")+".csv".lower()
             dni = input("Ingrese el dni del usuario a consultar: ").lower()
             tipo = input("Ingrese el tipo de cheque a buscar EMITIDO o DEPOSITADO: ").lower()
             salida = input("Ingrese si desea recibir la salida por PANTALLA o CSV: ").lower()
             """ try: """
             busqueda = buscar_por_dni(dni, tipo)
-            print(busqueda)
             if busqueda:
                 if salida == "pantalla":
                     print(f"Se encontraron {busqueda[-1]} cheques {tipo}s con dni {dni}")
